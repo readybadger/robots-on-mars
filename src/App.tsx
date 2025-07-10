@@ -17,7 +17,7 @@ const getOutput = (robots: Robot[]) => {
     .join('\n')
 }
 
-function App() {
+function Contents() {
   const [inputText, setInputText] = useState<string>(`5 3
 
 1 1 E
@@ -54,6 +54,10 @@ LLFFFLFLFL
       </div>
     </div>
   )
+}
+
+function App() {
+  return <Contents />
 }
 
 export default App
