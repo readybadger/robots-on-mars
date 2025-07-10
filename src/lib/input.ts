@@ -39,7 +39,7 @@ const parseInitialPosition = (input?: string): Position | null => {
 
 const parseInstructionLine = (input: string): Instruction[] | null => {
   const matchResult = input.match(INSTRUCTION_PATTERN)
-  const instructionArray = (matchResult || [])
+  const instructionArray = matchResult || []
   return instructionArray.length ? (instructionArray as Instruction[]) : null
 }
 
