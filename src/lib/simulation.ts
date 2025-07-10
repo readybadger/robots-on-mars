@@ -10,11 +10,28 @@ const forwardVectors: Record<Direction, Coord> = {
   W: { x: -1, y: 0 },
 }
 
-const addVectors = (coord1: Coord, coord2: Coord): Coord => {
+export const addVectors = (coord1: Coord, coord2: Coord): Coord => {
   return {
     x: coord1.x + coord2.x,
     y: coord1.y + coord2.y,
   }
+}
+
+export const isInWorldBounds = (location: Coord, world: World): boolean => {
+  return (
+    location.x >= 0 &&
+    location.x < world.width + 1 &&
+    location.y >= 0 &&
+    location.y < world.height + 1
+  )
+}
+
+export const arePositionsEqual = (pos1: Position, pos2: Position): boolean => {
+  return (
+    pos1.location.x === pos2.location.x &&
+    pos1.location.y === pos2.location.y &&
+    pos1.facing === pos2.facing
+  )
 }
 
 export const turnRobot = (
@@ -34,24 +51,7 @@ export const turnRobot = (
   }
 }
 
-const isInWorldBounds = (location: Coord, world: World): boolean => {
-  return (
-    location.x >= 0 &&
-    location.x < world.width + 1 &&
-    location.y >= 0 &&
-    location.y < world.height + 1
-  )
-}
-
-const arePositionsEqual = (pos1: Position, pos2: Position): boolean => {
-  return (
-    pos1.location.x === pos2.location.x &&
-    pos1.location.y === pos2.location.y &&
-    pos1.facing === pos2.facing
-  )
-}
-
-const moveRobotForward = (robot: Robot, world: World): Robot => {
+export const moveRobotForward = (robot: Robot, world: World): Robot => {
   const { facing, location } = robot.position
   const newLocation = addVectors(location, forwardVectors[facing])
   return isInWorldBounds(newLocation, world)
