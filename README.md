@@ -1,69 +1,25 @@
-# React + TypeScript + Vite
+# Robots on Mars
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a toy simulation of Robots on Mars being instruction to move about a grid. The specifics rules can be found in [scenario.md](/scenario.md).
 
-Currently, two official plugins are available:
+## Getting Started
+This is a `React` App built with `Vite`. You will need `node >= v20.19` (`nvm use` is supported).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In order to run the app, use the following commands:
 
-## Expanding the ESLint configuration
+1. `npm install`
+2. `npm run dev`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tests
+Tests can be run with `npm test`
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Considerations
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- A functional approach has been taken and emphasis has been put on keeping data immutable.
+- We distinguish between edge faces for the 'learning'.
+  - eg. If a robot moves off the top right hand corner to the East, another robot can still fall off the top of the grid to the North
+- Performance could be improved through:
+  - Processing more of the input in the same loops
+  - Running the simulation as the input is parsed
+  - Memoisation of various functions
