@@ -17,7 +17,7 @@ const getOutput = (robots: Robot[]) => {
     .join('\n')
 }
 
-function Contents() {
+function App() {
   const [inputText, setInputText] = useState<string>(`5 3
 
 1 1 E
@@ -30,10 +30,19 @@ FRRFLLFFRRFLL
 LLFFFLFLFL
   `)
   const [resultText, setResultText] = useState<string>('')
+  const [isError, setIsError] = useState<boolean>(false)
 
   const onRunSimulation = () => {
-    const { robots } = runSimulation(inputText)
-    setResultText(getOutput(robots))
+    try {
+      setIsError(false)
+      const { robots } = runSimulation(inputText)
+      setResultText(getOutput(robots))
+    } catch (error) {
+      setResultText(
+        error instanceof Error ? error.message : 'An error occurred'
+      )
+      setIsError(true)
+    }
   }
 
   return (
@@ -50,14 +59,14 @@ LLFFFLFLFL
         Simulation
       </button>
       <div className="grow">
-        <TextArea value={resultText} rows={20} />
+        <TextArea
+          className={isError ? 'text-red-400' : ''}
+          value={resultText}
+          rows={20}
+        />
       </div>
     </div>
   )
-}
-
-function App() {
-  return <Contents />
 }
 
 export default App
