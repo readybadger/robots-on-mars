@@ -11,7 +11,7 @@ type InstructionGroup = {
 
 const initialPositionPattern = /(\d).*(\d).*([NSEW])/
 
-export const splitAndCleanInput = (input: string): string[] => {
+const splitAndCleanInput = (input: string): string[] => {
   return input
     .split('\n')
     .map((line) => line.trim())
@@ -37,7 +37,7 @@ const parseInitialPosition = (input?: string): Position | null => {
   }
 }
 
-const parseInstructionLine = (input: string): Instruction[] | null => {
+export const parseInstructionLine = (input: string): Instruction[] | null => {
   const matchResult = input.match(INSTRUCTION_PATTERN)
   const instructionArray = matchResult || []
   return instructionArray.length ? (instructionArray as Instruction[]) : null
@@ -70,7 +70,7 @@ export const parseInstructions = (
   return instructionGroups
 }
 
-const parseWorldSize = (input: string): number[] => {
+export const parseWorldSize = (input: string): number[] => {
   const dimensions = input.split(' ').map(Number)
   if (dimensions.length !== 2 || dimensions.some((n) => isNaN(n))) {
     throw new Error(
@@ -84,7 +84,6 @@ export const parseScenarioInput = (input: string): Commander => {
   const inputLines = splitAndCleanInput(input)
   const worldSize = parseWorldSize(inputLines[0])
   const world: World = {
-    edges: [],
     width: worldSize[0],
     height: worldSize[1],
   }
