@@ -2,6 +2,8 @@
 
 This is a toy simulation of Robots on Mars being instruction to move about a grid. The specifics rules can be found in [scenario.md](/scenario.md).
 
+![Preview image showing the UI of Robots on Mars](/preview.png)
+
 ## Getting Started
 This is a `React` App built with `Vite`. You will need `node >= v20.19` (`nvm use` is supported).
 
