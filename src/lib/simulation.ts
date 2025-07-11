@@ -70,7 +70,6 @@ export const moveRobotForward = (robot: Robot, world: World): Robot => {
 
 /**
  * Returns the robot updated with the result of processing the instruction.
- * Additionally, if the robot is lost, it returns the edge position where it was lost.
  */
 const processInstruction = ({
   robot,
