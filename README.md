@@ -1,6 +1,6 @@
 # Robots on Mars
 
-This is a toy simulation of Robots on Mars being instruction to move about a grid. The specifics rules can be found in [scenario.md](/scenario.md).
+This is a toy simulation of Robots on Mars being instructed to move about a grid. The specifics rules can be found in [scenario.md](/scenario.md).
 
 ![Preview image showing the UI of Robots on Mars](/preview.png)
 
